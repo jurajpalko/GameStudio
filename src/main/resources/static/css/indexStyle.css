@@ -1,0 +1,14 @@
+body{
+    height: 100%;
+    background: #85BDBF;
+    font-family: monospace;
+    color: #404040;
+    font-size: 20px;
+}
+
+header{
+	text-align: center;
+}
+.content{
+	margin: 0 auto;
+}

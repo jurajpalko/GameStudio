@@ -1,0 +1,43 @@
+	body{
+	font-family: monospace;
+    color: #404040;
+	}
+
+	.table td, .table th{
+	padding: 0;
+	border-top: none;
+	}
+	.table td{
+	display: inline;
+	}
+
+	.svgimg{
+	text-align: 
+	}
+	
+	.background{
+	background-color: lightgray;
+	}
+
+	.content{
+	margin: 0 auto;
+	}
+	
+	h1{
+	text-align: center;
+	margin: 0 auto;
+	}
+	
+	.options{
+	text-align: center;
+	margin: 0 auto;
+	}
+	.options a:first-child {
+	padding-right: 3.4em;
+	}
+	tbody{
+	border: .1em solid gray;
+	}
+	button{
+	
+	}

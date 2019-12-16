@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Puzzle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/puzzleStyle.css">
+</head>
+<body>
+
+	<div th:if="${not @mainController.logged}">
+		You are not logged! Please <a href="/">log in</a>
+	</div>
+
+
+	<div th:if="${@mainController.logged}">
+		You are logged as <span th:text="${@mainController.loggedPlayer.name}" /><a
+			href="/logout"> Log out</a><br />
+	</div>
+	<h1>Puzzle</h1>
+	<div class="row">
+		<div class="content">
+			<a href="/puzzle">New game <br></a>
+		</div>
+	</div>
+
+
+	<!-- <div th:text="${@puzzleController.message}" /> -->
+
+
+	<div class="row">
+		<div class="content">
+			<div th:if="${not @puzzleController.solved}">
+				<div th:utext="${@puzzleController.htmlField}"></div>
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="content">
+			<div th:if="${@puzzleController.solved}">
+				<img alt="puzzle" src="/images/puzzle/puzzle.jpg">
+			</div>
+
+		</div>
+	</div>
+
+	<h3>Scores:</h3>
+	<ol class="score">
+		<lh>id</lh>
+		<lh>name</lh>
+		<lh>game</lh>
+		<lh>score</lh>
+		<li th:each="score : ${@puzzleController.scores}"><span
+			th:text="${score.ident}" /> <span th:text="${score.username}" /> <span
+			th:text="${score.game}" /> <span th:text="${score.value}" /></li>
+	</ol>
+
+</body>
+</html>

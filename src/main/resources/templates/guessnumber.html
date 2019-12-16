@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>GuessNumber</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/guessnumberStyle.css">
+</head>
+<body>
+
+	<div th:if="${not @mainController.logged}">
+		You are not logged! Please <a href="/">log in</a>
+	</div>
+
+
+	<div th:if="${@mainController.logged}">
+		You are logged as <span th:text="${@mainController.loggedPlayer.name}" /><a
+			href="/logout"> Log out</a><br />
+	</div>
+	<h1>GuessNumber</h1>
+	<div class="row">
+		<div class="content">
+			<a href="/guessnumber">New game <br></a>
+		</div>
+	</div>
+
+		
+	<div th:if="${@guessNumberController}">
+		You are logged as <span th:text="${@mainController.loggedPlayer.name}" /><a
+			href="/logout"> Log out</a><br />
+	</div>
+
+	
+		<form action="/guessnumber">
+			<label> Enter your guess: <br /><input type="text" name="guess" /><input type="submit" value="submitGuess" />
+			</label>
+		</form>
+	
+
+
+	
+
+</body>
+</html>

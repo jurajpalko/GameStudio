@@ -1,0 +1,36 @@
+	body{
+	font-family: monospace;
+	background-color: 
+    color: #404040;
+    font-size: 1.3em;
+	}
+
+	.table td, .table th{
+	padding:.1em;
+	}
+	
+	.svgimg{
+	text-align: 
+	}
+	
+	.background{
+	background-color: lightgray;
+	}
+	
+	.navbar{
+	margin: 0 auto;
+	}
+	.content{
+	margin: 0 auto;
+	}
+	h1{
+	text-align: center;
+	margin: 0 auto;
+	}
+	
+	.score lh{
+	text-decoration: underline;
+	}
+	
+	
+	

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Gamestudio</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/indexStyle.css" />
+</head>
+<body>
+
+
+
+
+	<header>
+		<div th:if="${@mainController.logged}">
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span> <a href="/logout"> Log out</a><br />
+		</div>
+		<div th:if="${not @mainController.logged}">
+			You are not logged!
+		</div>
+
+		<div class="container">
+			<h1>Welcome to Game Studio</h1>
+		</div>
+
+
+	</header>
+	<div th:if="${not @mainController.logged}">
+		<form action="/login">
+			<label> Login: <input type="text" name="name" /> Password: <input
+				type="password" name="passwd" /> <input type="submit" value="login" />
+			</label>
+
+		</form>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<div class="content">
+					<a href="/minesweeper"><button>Minesweeper</button></a>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="content">
+					<a href="/puzzle"><button>Puzzle</button></a>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="content">
+					<a href="/guessnumber"><button>Guessnumber</button></a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
+

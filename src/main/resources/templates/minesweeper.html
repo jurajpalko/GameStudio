@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Puzzle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/minesStyle.css">
+</head>
+<body>
+<div th:if="${not @mainController.logged}">
+		You are not logged! Please <a href="/">log in</a>
+	</div>
+
+
+	<div th:if="${@mainController.logged}">
+		You are logged as <span th:text="${@mainController.loggedPlayer.name}" /><a
+			href="/logout"> Log out</a><br />
+	</div>
+	<h1>Minesweeper</h1>
+
+	<!-- comment -->
+	
+	<div class="options">
+	<a href="/minesweeper">New game </a>
+
+	<a href="/minesweeper/switchMarking">marking: </a>
+	<span th:text="${@minesweeperController.marking}" />
+</div>
+
+	<div class="row">
+
+		<div class="content">
+			<div th:utext="${@minesweeperController.htmlField}"></div>
+		</div>
+		
+	<div th:if="${@minesweeperController.getStatus()==SOLVED}">You WON!</div>
+	</div>
+<h3>Scores:</h3>
+	<ol class="score">
+		<lh>id</lh>
+		<lh>name</lh>
+		<lh>game</lh>
+		<lh>score</lh>
+		<li th:each="score : ${@minesweeperController.scores}"><span
+			th:text="${score.ident}" /> <span th:text="${score.username}" /> <span
+			th:text="${score.game}" /> <span th:text="${score.value}" /></li>
+	</ol>
+</body>
+</html>
