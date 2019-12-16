@@ -13,21 +13,40 @@ import sk.tsystems.gamestudio.game.guessnumber.core.TheNumber;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class GuessNumberController {
 
-	
-		
+	private TheNumber number;
+	private int guess = -1;
 	
 	@RequestMapping("/guessnumber")
 	public String index() {
-		TheNumber number = new TheNumber(100);
+		number = new TheNumber(100);
+		guess = -1;
 		
-
 		return "guessnumber";
 	}
 	
 	
+	public boolean isPlaying() {
+		return number.isPlaying();
+	}
+	
+	public int getMaxNum() {
+		return number.getMaxNum();
+		
+	}
 	
 	
+	public int  getGuess() {
+		return guess;
+	}
+	public int getRandom() {
+		return number.getRandomNum();
+	}
 	
+	@RequestMapping("/guessnumber/guess")
+	public String setGuess(int guess) {
+		this.guess = guess;
+		return "guessnumber";
+	}
 }
 
 

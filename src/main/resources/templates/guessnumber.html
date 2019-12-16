@@ -27,21 +27,48 @@
 		</div>
 	</div>
 
-		
-	<div th:if="${@guessNumberController}">
-		You are logged as <span th:text="${@mainController.loggedPlayer.name}" /><a
-			href="/logout"> Log out</a><br />
+
+	<div class="row">
+		<div class="content">
+			<div th:if="${@guessNumberController.playing}">
+				Enter your guess from 0 to <span th:text="${@guessNumberController.maxNum}"> </span> : <br />
+			</div>
+
+
+			<div
+				th:if="${@guessNumberController.guess!=@guessNumberController.random}">
+				
+				
+				
+				
+				<form action="/guessnumber/guess">
+					<input type="text" name="guess" />
+					<input type="submit" value="submit guess" />
+					
+				</form>
+				
+				
+				
+			</div>
+			<div
+				th:if="${@guessNumberController.guess==@guessNumberController.random}">
+				<b> It sure is <span
+				th:text="${@guessNumberController.random}"></span>. You Won!!</b></div>
+
+
+
+			<div th:if="${@guessNumberController.guess!=-1}">
+				<div
+					th:if="${@guessNumberController.guess>@guessNumberController.random}">Your
+					guess is too high, try again.</div>
+				<div
+					th:if="${@guessNumberController.guess<@guessNumberController.random}">Your
+					guess is too low, try again.</div>
+			</div>
+		</div>
 	</div>
 
-	
-		<form action="/guessnumber">
-			<label> Enter your guess: <br /><input type="text" name="guess" /><input type="submit" value="submitGuess" />
-			</label>
-		</form>
-	
 
-
-	
 
 </body>
 </html>

@@ -38,6 +38,10 @@ public class PuzzleController {
 	@RequestMapping("/puzzle/move")
 	public String move(int tile) {
 		field.move(tile);
+		
+		
+		
+		
 		if (field.isState()&& mainController.isLogged()) {
 			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", field.getScore()));
 			
@@ -51,6 +55,8 @@ public class PuzzleController {
 		return "Hello from Java";
 	}
 
+	
+	
 	public String getHtmlField() {
 		Formatter f = new Formatter();
 
@@ -58,12 +64,14 @@ public class PuzzleController {
 
 		for (int row = 0; row < field.getRowCount(); row++) {
 			f.format("<tr>\n");
+			
 			for (int column = 0; column < field.getColumnCount(); column++) {
 				f.format("<td>\n");
+				
 				Tile tile = field.getTile(row, column);
+				
 				if (tile.getValue() != 0) {
-					f.format("<a href='/puzzle/move?tile=%d'><img src='/images/puzzle/img%d.jpg'</img></a>",
-							tile.getValue(), tile.getValue());
+					f.format("<a href='/puzzle/move?tile=%d'><img src='/images/puzzle/img%d.jpg'</img></a>",field.getTile(row, column).getValue(), tile.getValue());
 					f.format("</td>\n");
 
 				}

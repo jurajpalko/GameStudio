@@ -8,7 +8,18 @@ body{
 
 header{
 	text-align: center;
+	background: black;
+	color: lightgray;
 }
 .content{
 	margin: 0 auto;
+}
+.login .content{
+	border-radius: 5%;
+	border: .5em solid white ;
+	background: white;
+}
+
+input{
+	margin-bottom: .3em;
 }
