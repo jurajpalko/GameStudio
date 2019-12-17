@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gamestudio</title>
@@ -21,7 +20,9 @@
 				th:text="${@mainController.loggedPlayer.name}"></small> <a
 				href="/logout"> Log out</a><br />
 		</div>
-		<div th:if="${not @mainController.logged}"> <small>You are not logged!</small></div>
+		<div th:if="${not @mainController.logged}">
+			<small>You are not logged!</small>
+		</div>
 
 		<div class="container">
 			<h1>Welcome to Game Studio</h1>
@@ -30,49 +31,52 @@
 
 	</header>
 
-<section class="login" th:if="${not @mainController.logged}">
-	<div class="row">
-		<div class="content">
-			
-				<form action="/login">
+	<section class="login" th:if="${not @mainController.logged}">
+		<div class="container">
+			<div class="row">
+				<div class="content">
 
-					<div class="column">
-						<label> Login: </label> <br /> <input type="text" name="name" />
+					<form action="/login">
 
-					</div>
+						<div class="column">
+							<label> Username: </label> <br /> <input type="text" name="name" required/>
 
-					<div class="column">
-						<label> Password: </label> <br /> <input type="password"
-							name="passwd" />
-					</div>
-					<div class="column">
+						</div>
+
+						<div class="column">
+							<label> Password: </label> <br /> <input type="password"
+								name="passwd" required/>
+						</div>
+
 						<input type="submit" value="login" />
-					</div>
+						<button>
+							<a href="/registration">register</a>
+						</button>
 
 
+					</form>
 
-				</form>
-			
+				</div>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<section class="games"></section>
+	<section class="games"></section>
 	<div class="container">
 		<div class="row">
-				<div class="content">
-			<div class="col-4">
-			
+			<div class="content">
+				<div class="col-4">
+
 					<a href="/minesweeper"><button>Minesweeper</button></a>
 				</div>
 			</div>
-				<div class="content">
-			<div class="col-4">
+			<div class="content">
+				<div class="col-4">
 					<a href="/puzzle"><button>Puzzle</button></a>
 				</div>
 			</div>
-				<div class="content">
-			<div class="col-4">
+			<div class="content">
+				<div class="col-4">
 					<a href="/guessnumber"><button>Guessnumber</button></a>
 				</div>
 

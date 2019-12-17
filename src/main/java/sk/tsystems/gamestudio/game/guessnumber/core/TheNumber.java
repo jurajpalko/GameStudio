@@ -29,9 +29,6 @@ public class TheNumber {
 			return maxNum;
 		}
 		
-		
-		
-		
 		public void setGuess(int guess) {
 			this.guess = guess;
 		}

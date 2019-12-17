@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Registration</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/registrationStyle.css" />
+</head>
+<body>
+
+
+	<header>
+		<div th:if="${not @mainController.logged}">
+			You are not logged! Please <a href="/">log in</a>
+		</div>
+
+
+		<div th:if="${@mainController.logged}">
+			You are logged as <span
+				th:text="${@mainController.loggedPlayer.name}"></span><a
+				href="/logout"> Log out</a><br />
+		</div>
+
+
+
+		<div>
+			<a href="/"><h4>Game Studio</h4></a>
+		</div>
+
+
+	</header>
+
+	<section class="register">
+		<div class="container">
+			<div class="row">
+				<div class="content">
+					<div class="container">
+						<h1>Registration</h1>
+					</div>
+					<form action="/registration/register">
+
+						<div class="column">
+							<label> Username: </label> <br /> <input type="text" name="name" required/>
+
+						</div>
+
+						<div class="column">
+							<label> Password: </label> <br /> <input type="password"
+								name="passwd" required/>
+						</div>
+						<div class="column">
+							<input type="submit" value="register" />
+						</div>
+
+
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</body>
+</html>
+

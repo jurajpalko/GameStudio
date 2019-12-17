@@ -1,4 +1,5 @@
 	body{
+	 background: #85BDBF;
 	font-family: monospace;
     color: #404040;
 	}
@@ -18,3 +19,14 @@
 	margin: 0 auto;
 	}
 	
+header{
+	background: black;
+	color: lightgray;
+	}
+	header h4{
+	margin-left: 1em;
+	color: lightgray;
+	}
+	header h4:hover{
+	color: lightgreen;
+	}
