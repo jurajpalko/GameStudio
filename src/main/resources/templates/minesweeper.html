@@ -40,7 +40,7 @@
 	<div class="options">
 		<a href="/minesweeper">New game </a> <a
 			href="/minesweeper/switchMarking">marking: </a> <span
-			th:text="${@minesweeperController.marking}" />
+			th:text="${@minesweeperController.marking}" ></span>
 	</div>
 
 	<div class="container">
@@ -54,15 +54,78 @@
 				WON!</div>
 		</div>
 	</div>
-	<h3>Scores:</h3>
-	<ol class="score">
-		<lh>id</lh>
-		<lh>name</lh>
-		<lh>game</lh>
-		<lh>score</lh>
-		<li th:each="score : ${@minesweeperController.scores}"><span
-			th:text="${score.ident}" /> <span th:text="${score.username}" /> <span
-			th:text="${score.game}" /> <span th:text="${score.value}" /></li>
-	</ol>
+	<div class="container">
+
+		<div class="row">
+
+
+			<div th:if="${not @mainController.logged}" class="col-12">
+				<div class="content">
+					<h5>Scores:</h5>
+
+					<ol class="list-group">
+
+						<li class="list-group-item"
+							th:each="score : ${@minesweeperController.scores}"><span
+							th:text="${score.ident}"></span> <span
+							th:text="${score.username}"></span> <span
+							th:text="${score.value}"></span></li>
+					</ol>
+				</div>
+
+			</div>
+
+			<div th:if="${@mainController.logged}" class="col-6">
+				<div class="content">
+					<h5>Scores:</h5>
+
+					<ol class="list-group">
+
+						<li class="list-group-item"
+							th:each="score : ${@minesweeperController.scores}"><span
+							th:text="${score.ident}"></span> <span
+							th:text="${score.username}"></span> <span
+							th:text="${score.value}"></span></li>
+					</ol>
+				</div>
+
+			</div>
+
+
+			<div th:if="${@mainController.logged}" class="col-6">
+				<div class="content">
+					<h5>Enter your comment:</h5>
+					<form action="/minesweeper/comment">
+						<textarea class="form-control rounded-0" name="comment" required></textarea>
+						<br /> <input type="submit" value="Comment" />
+
+					</form>
+
+				</div>
+			</div>
+
+
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+
+
+					<h5>Comments:</h5>
+					<ol class="list-group">
+
+						<li class="list-group-item"
+							th:each="comment : ${@minesweeperController.comment}"><span
+							th:text="${comment.ident}"></span> <span
+							th:text="${comment.username}"></span> <span
+							th:text="${comment.game}"></span><br /> <span
+							class="commenttext" th:text="${comment.content}"></span></li>
+					</ol>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>

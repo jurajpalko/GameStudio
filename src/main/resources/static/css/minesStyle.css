@@ -50,3 +50,11 @@
 	header h4:hover{
 	color: lightgreen;
 	}
+	.commenttext{
+	word-break: break-word;
+	}
+	
+	.list-group-item {
+    padding: .35rem 1.25rem;
+
+}

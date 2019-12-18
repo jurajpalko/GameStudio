@@ -64,48 +64,82 @@
 				</div>
 
 
+			</div>
+		</div>
+	</div>
+	<div class="container">
+
+		<div class="row">
 
 
+			<div th:if="${not @mainController.logged}" class="col-12">
+				<div class="content">
+					<h5>Scores:</h5>
+
+					<ol class="list-group">
+
+						<li class="list-group-item"
+							th:each="score : ${@guessNumberController.scores}"><span
+							th:text="${score.ident}"></span> <span
+							th:text="${score.username}"></span> <span
+							th:text="${score.value}"></span></li>
+					</ol>
+				</div>
+
+			</div>
+
+			<div th:if="${@mainController.logged}" class="col-6">
+				<div class="content">
+					<h5>Scores:</h5>
+
+					<ol class="list-group">
+
+						<li class="list-group-item"
+							th:each="score : ${@guessNumberController.scores}"><span
+							th:text="${score.ident}"></span> <span
+							th:text="${score.username}"></span> <span
+							th:text="${score.value}"></span></li>
+					</ol>
+				</div>
+
+			</div>
 
 
-				<form action=""></form>
+			<div th:if="${@mainController.logged}" class="col-6">
+				<div class="content">
+					<h5>Enter your comment:</h5>
+					<form action="/guessnumber/comment">
+						<textarea class="form-control rounded-0" name="comment" required></textarea>
+						<br /> <input type="submit" value="Comment" />
+
+					</form>
+
+				</div>
+			</div>
 
 
-
-				<!-- 			<div -->
-				<!-- 				th:if="${@guessNumberController.guess!=@guessNumberController.random}"> -->
-
-				<!-- 				<form action="/guessnumber/guess"> -->
-				<!-- 					<input type="number" name="guess" min="0" max="100" required /> <input type="submit" -->
-				<!-- 						value="submit guess" /> -->
-
-				<!-- 				</form> -->
-
-				<!-- 			</div> -->
-				<!-- 			<div -->
-				<!-- 				th:if="${@guessNumberController.guess==@guessNumberController.random}"> -->
-				<!-- 				<b> It sure is <span th:text="${@guessNumberController.random}"></span>. -->
-				<!-- 					You Won!! -->
-				<!-- 				</b> -->
-				<!-- 			</div> -->
-
-				<!-- 			<div th:if="${@guessNumberController.guess!=-1}"> -->
-				<!-- 				<div -->
-				<!-- 					th:if="${@guessNumberController.guess>@guessNumberController.random}">Your -->
-				<!-- 					guess is too high, try again.</div> -->
-				<!-- 				<div -->
-				<!-- 					th:if="${@guessNumberController.guess<@guessNumberController.random}">Your -->
-				<!-- 					guess is too low, try again.</div> -->
-				<!-- 			</div> -->
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
 
 
+					<h5>Comments:</h5>
+					<ol class="list-group">
 
+						<li class="list-group-item"
+							th:each="comment : ${@guessNumberController.comment}"><span
+							th:text="${comment.ident}"></span> <span
+							th:text="${comment.username}"></span> <span
+							th:text="${comment.game}"></span><br /> <span
+							class="commenttext" th:text="${comment.content}"></span></li>
+					</ol>
 
+				</div>
 
 			</div>
 		</div>
 	</div>
-
 
 
 </body>
