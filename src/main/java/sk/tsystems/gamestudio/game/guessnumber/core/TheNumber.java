@@ -12,13 +12,14 @@ public class TheNumber {
 		private final int randomNum;
 		private int guess = 0;
 		private boolean Playing = true;
+		private int score;
 
 		
 		
 		public TheNumber(int maxNum) {
 			this.maxNum = maxNum;
 			this.randomNum = random.nextInt(maxNum)+1;
-			
+			score = 100;
 		}
 
 
@@ -38,5 +39,7 @@ public class TheNumber {
 			return Playing;
 		}
 		
-	
+	public int getScore() {
+		return score;
+	}
 }

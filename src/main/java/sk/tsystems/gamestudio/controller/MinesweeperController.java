@@ -11,8 +11,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.game.minesweeper.core.*;
 import sk.tsystems.gamestudio.game.minesweeper.core.Tile.State;
+import sk.tsystems.gamestudio.service.CommentService;
 import sk.tsystems.gamestudio.service.ScoreService;
 import sk.tsystems.gamestudio.consoleUI.Menu;
+import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.minesweeper.*;
 
@@ -22,14 +24,32 @@ import sk.tsystems.gamestudio.game.minesweeper.*;
 public class MinesweeperController {
 	private Field field;
 	private boolean marking;
+	private String comment;
 	@Autowired
 	private ScoreService scoreService;
 	@Autowired
 	private MainController mainController;
+	@Autowired
+	private CommentService commentService;
+
 	@RequestMapping("/minesweeper")
 	public String index() {
 		field = new Field(9, 9, 5);
 		marking = false;
+
+		return "minesweeper";
+	}
+
+	@RequestMapping("/minesweeper/comment")
+	public String comment(String comment) {
+		if (comment.trim().length()>0) {
+			this.comment = comment;
+			if (mainController.isLogged()) {
+				commentService
+						.addComment(new Comment(mainController.getLoggedPlayer().getName(), "mines", this.comment));
+
+			}
+		}
 
 		return "minesweeper";
 	}
@@ -44,13 +64,11 @@ public class MinesweeperController {
 	public String openTile(int row, int column) {
 		if (getStatus() == GameState.PLAYING) {
 			field.openTile(row, column);
-					}
+		}
 		if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
-			scoreService
-					.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
 
 		}
-
 
 		return "minesweeper";
 	}
@@ -59,11 +77,10 @@ public class MinesweeperController {
 	public String markTile(int row, int column) {
 		if (getStatus() == GameState.PLAYING) {
 			field.markTile(row, column);
-		
+
 		}
 		if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
-			scoreService
-					.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
 
 		}
 
@@ -135,6 +152,10 @@ public class MinesweeperController {
 
 	public List<Score> getScores() {
 		return scoreService.getTopScores("mines");
+	}
+
+	public List<Comment> getComment() {
+		return commentService.getComments("mines");
 	}
 
 }

@@ -3,16 +3,19 @@ package sk.tsystems.gamestudio.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-
 public class Comment {
 	@Id
 	@GeneratedValue
 	private int ident;
 
+	@NotEmpty
 	private String username;
+	@NotEmpty
 	private String game;
+	@NotEmpty
 	private String content;
 	public Comment() {
 

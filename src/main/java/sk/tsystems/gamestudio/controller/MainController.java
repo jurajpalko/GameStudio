@@ -26,12 +26,15 @@ PlayerService playerService;
 	@RequestMapping("/login")
 	public String login(Player player) {
 		
+			
+		
 		try {
 			if (playerService.getPlayer(player.getName()).getPasswd().equals(player.getPasswd())) {
 				loggedPlayer = player;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("Not able to login.");
 			e.printStackTrace();
 		}
 		return "redirect:/";

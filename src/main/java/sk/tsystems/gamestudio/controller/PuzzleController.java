@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.game.npuzzle.Field;
+import sk.tsystems.gamestudio.service.CommentService;
 import sk.tsystems.gamestudio.service.ScoreService;
+import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.npuzzle.*;
 
@@ -19,17 +21,19 @@ import sk.tsystems.gamestudio.game.npuzzle.*;
 public class PuzzleController {
 
 	private Field field;
-	
+	private String comment;
+
 	@Autowired
 	private ScoreService scoreService;
-	
+
 	@Autowired
 	private MainController mainController;
 
-	
+	@Autowired
+	private CommentService commentService;
+
 	@RequestMapping("/puzzle")
 	public String index() {
-
 
 		field = new Field(4, 4);
 		return "puzzle";
@@ -38,16 +42,25 @@ public class PuzzleController {
 	@RequestMapping("/puzzle/move")
 	public String move(int tile) {
 		field.move(tile);
-		
-		
-		
-		
-		if (field.isState()&& mainController.isLogged()) {
+
+		if (field.isState() && mainController.isLogged()) {
 			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", field.getScore()));
-			
+
 		}
-		
-		
+
+		return "puzzle";
+	}
+
+	@RequestMapping("/puzzle/comment")
+	public String comment(String comment) {
+		if (comment.trim().length() > 0) {
+			this.comment = comment;
+			if (mainController.isLogged()) {
+				commentService
+						.addComment(new Comment(mainController.getLoggedPlayer().getName(), "puzzle", this.comment));
+
+			}
+		}
 		return "puzzle";
 	}
 
@@ -55,8 +68,6 @@ public class PuzzleController {
 		return "Hello from Java";
 	}
 
-	
-	
 	public String getHtmlField() {
 		Formatter f = new Formatter();
 
@@ -64,14 +75,16 @@ public class PuzzleController {
 
 		for (int row = 0; row < field.getRowCount(); row++) {
 			f.format("<tr>\n");
-			
+
 			for (int column = 0; column < field.getColumnCount(); column++) {
 				f.format("<td>\n");
-				
+
 				Tile tile = field.getTile(row, column);
-				
+
 				if (tile.getValue() != 0) {
-					f.format("<a href='/puzzle/move?tile=%d'><img src='/images/puzzle/img%d.jpg'</img></a>",field.getTile(row, column).getValue(), tile.getValue());
+					f.format(
+							"<a href='/puzzle/move?tile=%d'><img class=\"img-fluid\" src='/images/puzzle/img%d.jpg'</img></a>",
+							field.getTile(row, column).getValue(), tile.getValue());
 					f.format("</td>\n");
 
 				}
@@ -88,9 +101,13 @@ public class PuzzleController {
 	public boolean isSolved() {
 		return field.isState();
 	}
-	
-	public List<Score> getScores(){
+
+	public List<Score> getScores() {
 		return scoreService.getTopScores("puzzle");
+	}
+
+	public List<Comment> getComment() {
+		return commentService.getComments("puzzle");
 	}
 
 }

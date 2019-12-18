@@ -3,6 +3,9 @@ package sk.tsystems.gamestudio.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 public class Player {
@@ -10,7 +13,9 @@ public class Player {
 	@Id
 	@GeneratedValue
 	private int ident;
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private String passwd;
 
 	public Player() {
@@ -47,4 +52,5 @@ public class Player {
 		this.passwd = passwd;
 	}
 
+	
 }
