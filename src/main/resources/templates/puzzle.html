@@ -7,6 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/games.css">
 <link rel="stylesheet" href="/css/puzzleStyle.css">
 </head>
 <body>
@@ -35,12 +36,40 @@
 
 
 	<h1>Puzzle</h1>
+
+
 	<div class="container">
 		<div class="row">
 			<div class="content">
-				<a href="/puzzle">New game <br></a>
+				<div class="col-4">
+					<a href="/puzzle"><b>New game</b></a>
+				</div>
+			</div>
+			<div class="content">
+				<div class="col-4">
+					<div>Game rating:</div>
+					<span th:text="${@puzzleController.averageRating}"></span>
+				</div>
+			</div>
+			<div class="content">
+				<div class="col-4">
+					<ul class="rating list-group list-group-horizontal"
+						th:if="${@mainController.logged}">
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/puzzle/rate?rating=1}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/puzzle/rate?rating=2}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/puzzle/rate?rating=3}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/puzzle/rate?rating=4}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/puzzle/rate?rating=5}">*</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<!-- <div th:text="${@puzzleController.message}" /> -->

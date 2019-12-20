@@ -7,6 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/games.css">
 <link rel="stylesheet" href="/css/guessnumberStyle.css">
 </head>
 <body>
@@ -36,7 +37,33 @@
 	<div class="container">
 		<div class="row">
 			<div class="content">
+			<div class="col-4">
 				<a href="/guessnumber">New game <br></a>
+				</div>
+				<div class="content">
+				<div class="col-4">
+					<div>Game rating:</div>
+					<span th:text="${@guessNumberController.averageRating}"></span>
+				</div>
+			</div>
+				<div class="content">
+				<div class="col-4">
+					<ul class="rating list-group list-group-horizontal"
+						th:if="${@mainController.logged}">
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/guessnumber/rate?rating=1}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/guessnumber/rate?rating=2}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/guessnumber/rate?rating=3}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/guessnumber/rate?rating=4}">*</a></li>
+						<li class="list-group-item"><a href="product/list.html"
+							th:href="@{/guessnumber/rate?rating=5}">*</a></li>
+					</ul>
+				</div>
+			</div>
+			
 			</div>
 		</div>
 	</div>

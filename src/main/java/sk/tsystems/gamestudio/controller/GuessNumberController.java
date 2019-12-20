@@ -11,10 +11,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Player;
+import sk.tsystems.gamestudio.entity.Rating;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.guessnumber.core.TheNumber;
 import sk.tsystems.gamestudio.game.minesweeper.core.GameState;
 import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
@@ -33,7 +35,8 @@ public class GuessNumberController {
 	private MainController mainController;
 	@Autowired
 	private CommentService commentService;
-
+	@Autowired
+	private RatingService ratingService;
 	@RequestMapping("/guessnumber")
 	public String index() {
 		number = new TheNumber(100);
@@ -45,11 +48,16 @@ public class GuessNumberController {
 	@RequestMapping("/guessnumber/comment")
 	public String comment(String comment) {
 		if (comment.trim().length() > 0) {
-			this.comment = comment;
-			if (mainController.isLogged()) {
-				commentService.addComment(
-						new Comment(mainController.getLoggedPlayer().getName(), "guessnumber", this.comment));
+			try {
+				this.comment = comment;
+				if (mainController.isLogged()) {
+					commentService.addComment(
+							new Comment(mainController.getLoggedPlayer().getName(), "guessnumber", this.comment));
 
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return "guessnumber";
@@ -71,7 +79,20 @@ public class GuessNumberController {
 	public int getRandom() {
 		return number.getRandomNum();
 	}
-
+	@RequestMapping("/guessnumber/rate")
+	public String rate(int rating) {
+		if (mainController.isLogged()) {
+			
+			try {
+				ratingService.setRating(new Rating("guessnumber", rating, mainController.getLoggedPlayer().getName()));
+				System.out.println("-------------------------" + rating);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "guessnumber";
+	}
 	@RequestMapping("/guessnumber/guess")
 	public String setGuess(String guess) {
 		try {
@@ -124,5 +145,13 @@ public class GuessNumberController {
 	public List<Comment> getComment() {
 		return commentService.getComments("guessnumber");
 	}
-
+	public double getAverageRating() {
+		double rating =0;
+		try {
+			rating = ratingService.getAverateRating("guessnumber");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return rating;
+	}
 }

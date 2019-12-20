@@ -1,29 +1,35 @@
-body{
-    
-    background: #85BDBF;
-    font-family: monospace;
-    color: #404040;
-    font-size: 20px;
+body {
+	background: #85BDBF;
+	font-family: monospace;
+	color: #404040;
+	font-size: 20px;
 }
 
-header{
+header {
 	text-align: center;
 	background: black;
 	color: lightgray;
 }
-.content{
+
+.content {
 	margin: 0 auto;
 }
-.login .content{
+
+.login .content {
 	border-radius: 5%;
-	border: .5em solid white ;
+	border: .5em solid white;
 	background: white;
 }
 
-input{
+input {
 	margin-bottom: .3em;
 }
-.login a{
+
+.login a {
 	text-decoration: none;
 	color: black;
+}
+
+.rating li a{
+display: inline-block;	
 }

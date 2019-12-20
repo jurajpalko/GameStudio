@@ -1,0 +1,42 @@
+body {
+	background: #85BDBF;
+	font-family: monospace;
+	color: #404040;
+}
+
+.svgimg {
+	text-align:
+}
+
+.background {
+	background-color: lightgray;
+}
+
+.content {
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	margin: 0 auto;
+}
+header {
+	background: black;
+	color: lightgray;
+}
+header h4 {
+	margin-left: 1em;
+	color: lightgray;
+}
+
+header h4:hover {
+	color: lightgreen;
+}
+
+.commenttext {
+	word-break: break-word;
+}
+
+.list-group-item {
+    padding: 0rem .5rem;
+	}

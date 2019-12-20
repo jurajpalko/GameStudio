@@ -34,7 +34,7 @@ PlayerService playerService;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Not able to login.");
+			System.err.println("Not able to login.");
 			e.printStackTrace();
 		}
 		return "redirect:/";
