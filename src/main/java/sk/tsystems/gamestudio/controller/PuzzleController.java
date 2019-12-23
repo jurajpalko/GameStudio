@@ -62,6 +62,7 @@ public class PuzzleController {
 	}
 	@RequestMapping("/puzzle/rate")
 	public String rate(int rating) {
+		if(rating>0&&rating<6){
 		if (mainController.isLogged()) {
 			
 			try {
@@ -71,7 +72,7 @@ public class PuzzleController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}}
 		return "puzzle";
 	}
 
