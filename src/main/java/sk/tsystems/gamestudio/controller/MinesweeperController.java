@@ -42,6 +42,7 @@ public class MinesweeperController {
 	public String index() {
 		field = new Field(9, 9, 10);
 		marking = false;
+		
 
 		return "minesweeper";
 	}
@@ -100,7 +101,8 @@ public class MinesweeperController {
 			}
 			if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
 				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
-
+				
+				return "minesweeper";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -124,7 +126,7 @@ public class MinesweeperController {
 			}
 			if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
 				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
-
+				return "minesweeper";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

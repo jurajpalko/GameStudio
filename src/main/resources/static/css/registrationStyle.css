@@ -1,19 +1,10 @@
-body{
- 
-    background: #85BDBF;
-    font-family: monospace;
-    color: #404040;
-   
-}
 
 header{
 
 	background: black;
 	color: lightgray;
 }
-.content{
-	margin: 0 auto;
-}
+
 .register .content{
 	border-radius: 5%;
 	border: .5em solid white ;
@@ -23,16 +14,6 @@ header{
 input{
 	margin-bottom: .3em;
 }
-header{
-	background: black;
-	color: lightgray;
+
 	
-	}
-	header h4{
-	margin-left: 1em;
-	color: lightgray;
-	}
-	header h4:hover{
-	color: lightgreen;
-	 
-	}
+	

@@ -124,9 +124,9 @@ public class GuessNumberController {
 	public String getMessage() {
 
 		if (guess == getRandom()) {
-			if (mainController.isLogged()) {
+			if (mainController.isLogged()&&score>0) {
 				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "guessnumber", score));
-
+				score=0;
 			}
 
 			return "It sure is " + getRandom() + " You Won!!";

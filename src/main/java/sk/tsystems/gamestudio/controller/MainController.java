@@ -26,7 +26,7 @@ PlayerService playerService;
 	@RequestMapping("/login")
 	public String login(Player player) {
 		
-			
+		
 		
 		try {
 			if (playerService.getPlayer(player.getName()).getPasswd().equals(player.getPasswd())) {
@@ -36,6 +36,7 @@ PlayerService playerService;
 			// TODO Auto-generated catch block
 			System.err.println("Not able to login.");
 			e.printStackTrace();
+		
 		}
 		return "redirect:/";
 	}

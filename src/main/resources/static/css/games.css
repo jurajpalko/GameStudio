@@ -19,11 +19,23 @@ body {
 h1 {
 	text-align: center;
 	margin: 0 auto;
+background: black;
+}
+
+
+h2 {
+	text-align: center;
+	margin: 0 auto;
+	
+}
+h4{
+	margin: 0;
 }
 header {
 	background: black;
 	color: lightgray;
 }
+
 header h4 {
 	margin-left: 1em;
 	color: lightgray;
@@ -38,5 +50,30 @@ header h4:hover {
 }
 
 .list-group-item {
-    padding: 0rem .5rem;
-	}
+	padding: 0rem .5rem;
+}
+
+h1 {
+	color: lightgreen;
+}
+.row{
+	margin-top: 1em;
+}
+div .content{
+	
+	text-align: center;
+	
+}
+
+.gameOption{font-size: 1.6em;
+}
+.section {
+	background: #408080;
+	margin-bottom: 0;
+}
+
+.section h5 {
+	font-size: 1.6em;
+	color: lightgray;
+}
+

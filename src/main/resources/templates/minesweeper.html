@@ -38,37 +38,55 @@
 
 	<!-- comment -->
 
-	
-		<div class="container">
-			<div class="row">
-				<div class="content">
-					<div class="col-4">
-						<a href="/minesweeper">New game </a> <br /> <a
-							href="/minesweeper/switchMarking">marking: </a> <span
-							th:text="${@minesweeperController.marking}"></span>
-					</div>
-				</div>
-				<div class="content">
-					<div class="col-4">
-						<div>Game rating:</div>
-						
-						<span  th:text="${@minesweeperController.averageRating}"></span>
-					</div>
-				</div>
-				<div class="content">
-				<div class="col-4">
-					<ul class="rating list-group list-group-horizontal" th:if="${@mainController.logged}">
-						<li class="list-group-item"  ><a th:href="@{/minesweeper/rate?rating=1}">*</a></li>
-						<li class="list-group-item" ><a th:href="@{/minesweeper/rate?rating=2}">*</a></li>
-						<li class="list-group-item" ><a  th:href="@{/minesweeper/rate?rating=3}">*</a></li>
-						<li class="list-group-item" ><a  th:href="@{/minesweeper/rate?rating=4}">*</a></li>
-						<li class="list-group-item" ><a th:href="@{/minesweeper/rate?rating=5}">*</a></li>
-						</ul>
-				</div>
+
+	<div class="container gameOption">
+		<div class="row">
+
+			<div class="col-4">
+				<a href="/minesweeper"><button>New game</button></a> <br />
 			</div>
+
+
+
+
+			<div class="col-4">
+				<span>Game rating:</span> <span
+					th:text="${@minesweeperController.averageRating}"></span>
+			</div>
+
+
+
+			<div class="content">
+
+				<ul class="rating list-group list-group-horizontal"
+					th:if="${@mainController.logged}">
+					<li class="list-group-item"><a
+						th:href="@{/minesweeper/rate?rating=1}">*</a></li>
+					<li class="list-group-item"><a
+						th:href="@{/minesweeper/rate?rating=2}">*</a></li>
+					<li class="list-group-item"><a
+						th:href="@{/minesweeper/rate?rating=3}">*</a></li>
+					<li class="list-group-item"><a
+						th:href="@{/minesweeper/rate?rating=4}">*</a></li>
+					<li class="list-group-item"><a
+						th:href="@{/minesweeper/rate?rating=5}">*</a></li>
+				</ul>
 			</div>
 		</div>
-	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="content">
+				<div class="col-12">
+					<a href="/minesweeper/switchMarking"><button>marking:
+						</button> </a><span class="gameOption"
+						th:text="${@minesweeperController.marking}"></span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 
 
 
@@ -77,84 +95,84 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="content">
-				<div th:utext="${@minesweeperController.htmlField}"></div>
+			<div  class="content">
+				<div  th:if="${@minesweeperController.getStatus() != SOLVED}" th:utext="${@minesweeperController.htmlField}"></div>
 			</div>
 
-			<div th:if="${@minesweeperController.getStatus()==SOLVED}">You
+			<div th:if="${@minesweeperController.getStatus() == SOLVED}">You
 				WON!</div>
 		</div>
 	</div>
-	<div class="container">
-
-		<div class="row">
-
-
-			<div th:if="${not @mainController.logged}" class="col-12">
-				<div class="content">
-					<h5>Scores:</h5>
-
-					<ol class="list-group">
-
-						<li class="list-group-item"
-							th:each="score : ${@minesweeperController.scores}"><span
-							th:text="${score.ident}"></span> <span
-							th:text="${score.username}"></span> <span
-							th:text="${score.value}"></span></li>
-					</ol>
-				</div>
-
-			</div>
-
-			<div th:if="${@mainController.logged}" class="col-6">
-				<div class="content">
-					<h5>Scores:</h5>
-
-					<ol class="list-group">
-
-						<li class="list-group-item"
-							th:each="score : ${@minesweeperController.scores}"><span
-							th:text="${score.ident}"></span> <span
-							th:text="${score.username}"></span> <span
-							th:text="${score.value}"></span></li>
-					</ol>
-				</div>
-
-			</div>
-
-
-			<div th:if="${@mainController.logged}" class="col-6">
-				<div class="content">
-					<h5>Enter your comment:</h5>
-					<form action="/minesweeper/comment">
-						<textarea class="form-control rounded-0" name="comment" required></textarea>
-						<br /> <input type="submit" value="Comment" />
-
-					</form>
-
-				</div>
-			</div>
-
-
-		</div>
+	<div class="section">
 		<div class="container">
+
 			<div class="row">
-				<div class="col-12">
 
 
-					<h5>Comments:</h5>
-					<ol class="list-group">
+				<div th:if="${not @mainController.logged}" class="col-12">
+					<div class="content">
+						<h5>Scores:</h5>
 
-						<li class="list-group-item"
-							th:each="comment : ${@minesweeperController.comment}"><span
-							th:text="${comment.ident}"></span> <span
-							th:text="${comment.username}"></span> <span
-							th:text="${comment.game}"></span><br /> <span
-							class="commenttext" th:text="${comment.content}"></span></li>
-					</ol>
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="score : ${@minesweeperController.scores}"><span
+								th:text="${score.username}"></span> <span
+								th:text="${score.value}"></span></li>
+						</ol>
+					</div>
 
 				</div>
 
+				<div th:if="${@mainController.logged}" class="col-6">
+					<div class="content">
+						<h5>Scores:</h5>
+
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="score : ${@minesweeperController.scores}"> <span
+								th:text="${score.username}"></span> <span
+								th:text="${score.value}"></span></li>
+						</ol>
+					</div>
+
+				</div>
+
+
+				<div th:if="${@mainController.logged}" class="col-6">
+					<div class="content">
+						<h5>Enter your comment:</h5>
+						<form action="/minesweeper/comment">
+							<textarea class="form-control rounded-0" name="comment" required></textarea>
+							<br /> <input type="submit" value="Comment" />
+
+						</form>
+
+					</div>
+				</div>
+
+
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+
+
+						<h5>Comments:</h5>
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="comment : ${@minesweeperController.comment}"><span
+								th:text="${comment.ident}"></span> <span
+								th:text="${comment.username}"></span> <span
+								th:text="${comment.game}"></span><br /> <span
+								class="commenttext" th:text="${comment.content}"></span></li>
+						</ol>
+
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>

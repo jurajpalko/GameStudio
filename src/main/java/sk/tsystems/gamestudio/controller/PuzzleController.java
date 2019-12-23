@@ -24,6 +24,7 @@ public class PuzzleController {
 
 	private Field field;
 	private String comment;
+	private int score;
 
 	@Autowired
 	private ScoreService scoreService;
@@ -36,7 +37,7 @@ public class PuzzleController {
 
 	@Autowired
 	private RatingService ratingService;
-	
+
 	@RequestMapping("/puzzle")
 	public String index() {
 
@@ -48,10 +49,11 @@ public class PuzzleController {
 	public String move(int tile) {
 		try {
 			field.move(tile);
-
-			if (field.isState() && mainController.isLogged()) {
-				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", field.getScore()));
-
+			score = field.getScore();
+			if (field.isState() && mainController.isLogged() && score > 0) {
+				scoreService
+						.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", field.getScore()));
+				score = 0;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -60,19 +62,21 @@ public class PuzzleController {
 
 		return "puzzle";
 	}
+
 	@RequestMapping("/puzzle/rate")
 	public String rate(int rating) {
-		if(rating>0&&rating<6){
-		if (mainController.isLogged()) {
-			
-			try {
-				ratingService.setRating(new Rating("puzzle", rating, mainController.getLoggedPlayer().getName()));
-				System.out.println("-------------------------" + rating);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (rating > 0 && rating < 6) {
+			if (mainController.isLogged()) {
+
+				try {
+					ratingService.setRating(new Rating("puzzle", rating, mainController.getLoggedPlayer().getName()));
+					System.out.println("-------------------------" + rating);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}}
+		}
 		return "puzzle";
 	}
 
@@ -82,8 +86,8 @@ public class PuzzleController {
 			try {
 				this.comment = comment;
 				if (mainController.isLogged()) {
-					commentService
-							.addComment(new Comment(mainController.getLoggedPlayer().getName(), "puzzle", this.comment));
+					commentService.addComment(
+							new Comment(mainController.getLoggedPlayer().getName(), "puzzle", this.comment));
 
 				}
 			} catch (Exception e) {
@@ -141,7 +145,7 @@ public class PuzzleController {
 	}
 
 	public double getAverageRating() {
-		double rating =0;
+		double rating = 0;
 		try {
 			rating = ratingService.getAverateRating("puzzle");
 		} catch (Exception e) {

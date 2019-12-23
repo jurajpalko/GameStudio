@@ -11,9 +11,7 @@ header {
 	color: lightgray;
 }
 
-.content {
-	margin: 0 auto;
-}
+
 
 .login .content {
 	border-radius: 5%;
@@ -28,8 +26,4 @@ input {
 .login a {
 	text-decoration: none;
 	color: black;
-}
-
-.rating li a{
-display: inline-block;	
 }

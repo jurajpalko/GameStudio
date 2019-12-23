@@ -7,6 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous" />
+	<link rel="stylesheet" href="/css/games.css">
 <link rel="stylesheet" href="/css/indexStyle.css" />
 </head>
 <body>
@@ -39,13 +40,14 @@
 					<form action="/login">
 
 						<div class="column">
-							<label> Username: </label> <br /> <input type="text" name="name" required/>
+							<label> Username: </label> <br /> <input type="text" name="name"
+								required />
 
 						</div>
 
 						<div class="column">
 							<label> Password: </label> <br /> <input type="password"
-								name="passwd" required/>
+								name="passwd" required />
 						</div>
 
 						<input type="submit" value="login" />
@@ -61,37 +63,47 @@
 		</div>
 	</section>
 
-	<section class="games"></section>
-	<div class="container">
-		<div class="row">
-			<div class="content">
+	<section class="games">
+		<div class="container">
+			<div class="row">
 				<div class="content">
-				<div class="col-4">
-<div><a href="/minesweeper"><img src="images/mines/mines.png" width="2em" height="2em" alt="mines"></a></div>
-					<a href="/minesweeper"><button>Minesweeper</button></a>
+					<div class="content">
+						<div class="col-4">
+							<div>
+								<a href="/minesweeper"><img src="/images/mines/mines.png"
+									width="180px" alt="mines"></a>
+							</div>
+<!-- 							<a href="/minesweeper"><button>Minesweeper</button></a> -->
+						</div>
+					</div>
 				</div>
-				</div>
-			</div>
-			<div class="content">
 				<div class="content">
-				<div class="col-4">
-					<div><a href="/minesweeper"><img src="images/puzzle/thePuzzle.jpg" width="2em" height="2em" alt="puzzle"></a></div>
-					<a href="/puzzle"><button>Puzzle</button></a>
+					<div class="content">
+						<div class="col-4">
+							<div>
+								<a href="puzzle"><img
+									src="/images/puzzle/thePuzzle.png" width="180px" alt="puzzle"></a>
+							</div>
+<!-- 							<a href="/puzzle"><button>Puzzle</button></a> -->
+						</div>
+					</div>
 				</div>
-				</div>
-			</div>
-			<div class="content">
 				<div class="content">
-				<div class="col-4">
-					<div><a href="/minesweeper"><img src="images/guessnumber/guessnumber.jpg" width="2em" height="2em" alt="guessnumber"></a></div>
-					<a href="/guessnumber"><button>Guessnumber</button></a>
-				</div>
-				</div>
+					<div class="content">
+						<div class="col-4">
+							<div>
+								<a href="/guessnumber"><img
+									src="/images/guessnumber/guessnumber.jpg" width="180px"
+									alt="guessnumber"></a>
+							</div>
+<!-- 							<a href="/guessnumber"><button>Guessnumber</button></a> -->
+						</div>
+					</div>
 
+				</div>
 			</div>
 		</div>
-	</div>
-
+	</section>
 
 </body>
 </html>

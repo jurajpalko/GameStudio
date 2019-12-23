@@ -38,38 +38,38 @@
 	<h1>Puzzle</h1>
 
 
-	<div class="container">
+	<div class="container gameOption">
 		<div class="row">
-			<div class="content">
-				<div class="col-4">
-					<a href="/puzzle"><b>New game</b></a>
-				</div>
+
+			<div class="col-4">
+				<a href="/puzzle"><button>New game</button></a>
 			</div>
-			<div class="content">
-				<div class="col-4">
-					<div>Game rating:</div>
-					<span th:text="${@puzzleController.averageRating}"></span>
-				</div>
+
+
+			<div class="col-4">
+				<span>Game rating:</span> <span
+					th:text="${@puzzleController.averageRating}"></span>
 			</div>
-			<div class="content">
-				<div class="col-4">
-					<ul class="rating list-group list-group-horizontal"
-						th:if="${@mainController.logged}">
-						<li class="list-group-item"><a href="product/list.html"
-							th:href="@{/puzzle/rate?rating=1}">*</a></li>
-						<li class="list-group-item"><a href="product/list.html"
-							th:href="@{/puzzle/rate?rating=2}">*</a></li>
-						<li class="list-group-item"><a href="product/list.html"
-							th:href="@{/puzzle/rate?rating=3}">*</a></li>
-						<li class="list-group-item"><a href="product/list.html"
-							th:href="@{/puzzle/rate?rating=4}">*</a></li>
-						<li class="list-group-item"><a href="product/list.html"
-							th:href="@{/puzzle/rate?rating=5}">*</a></li>
-					</ul>
-				</div>
+
+
+			<div class="col-4">
+				<ul class="rating list-group list-group-horizontal"
+					th:if="${@mainController.logged}">
+					<li class="list-group-item"><a href="product/list.html"
+						th:href="@{/puzzle/rate?rating=1}">*</a></li>
+					<li class="list-group-item"><a href="product/list.html"
+						th:href="@{/puzzle/rate?rating=2}">*</a></li>
+					<li class="list-group-item"><a href="product/list.html"
+						th:href="@{/puzzle/rate?rating=3}">*</a></li>
+					<li class="list-group-item"><a href="product/list.html"
+						th:href="@{/puzzle/rate?rating=4}">*</a></li>
+					<li class="list-group-item"><a href="product/list.html"
+						th:href="@{/puzzle/rate?rating=5}">*</a></li>
+				</ul>
+
+
 			</div>
 		</div>
-
 	</div>
 
 	<!-- <div th:text="${@puzzleController.message}" /> -->
@@ -104,77 +104,78 @@
 
 
 
-
-	<div class="container">
-
-		<div class="row">
-
-
-			<div th:if="${not @mainController.logged}" class="col-12">
-				<div class="content">
-					<h5>Scores:</h5>
-
-					<ol class="list-group">
-
-						<li class="list-group-item"
-							th:each="score : ${@puzzleController.scores}"><span
-							th:text="${score.ident}"></span> <span
-							th:text="${score.username}"></span> <span
-							th:text="${score.value}"></span></li>
-					</ol>
-				</div>
-
-			</div>
-
-			<div th:if="${@mainController.logged}" class="col-6">
-				<div class="content">
-					<h5>Scores:</h5>
-
-					<ol class="list-group">
-
-						<li class="list-group-item"
-							th:each="score : ${@puzzleController.scores}"><span
-							th:text="${score.ident}"></span> <span
-							th:text="${score.username}"></span> <span
-							th:text="${score.value}"></span></li>
-					</ol>
-				</div>
-
-			</div>
-
-
-			<div th:if="${@mainController.logged}" class="col-6">
-				<div class="content">
-					<h5>Enter your comment:</h5>
-					<form action="/puzzle/comment">
-						<textarea class="form-control rounded-0" name="comment" required></textarea>
-						<br /> <input type="submit" value="Comment" />
-
-					</form>
-
-				</div>
-			</div>
-
-
-		</div>
+	<div class="section">
 		<div class="container">
+
 			<div class="row">
-				<div class="col-12">
 
 
-					<h5>Comments:</h5>
-					<ol class="list-group">
+				<div th:if="${not @mainController.logged}" class="col-12">
+					<div class="content">
+						<h5>Scores:</h5>
 
-						<li class="list-group-item"
-							th:each="comment : ${@puzzleController.comment}"><span
-							th:text="${comment.ident}"></span> <span
-							th:text="${comment.username}"></span> <span
-							th:text="${comment.game}"></span><br /> <span
-							class="commenttext" th:text="${comment.content}"></span></li>
-					</ol>
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="score : ${@puzzleController.scores}"><span
+								th:text="${score.ident}"></span> <span
+								th:text="${score.username}"></span> <span
+								th:text="${score.value}"></span></li>
+						</ol>
+					</div>
 
 				</div>
 
+				<div th:if="${@mainController.logged}" class="col-6">
+					<div class="content">
+						<h5>Scores:</h5>
+
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="score : ${@puzzleController.scores}"><span
+								th:text="${score.ident}"></span> <span
+								th:text="${score.username}"></span> <span
+								th:text="${score.value}"></span></li>
+						</ol>
+					</div>
+
+				</div>
+
+
+				<div th:if="${@mainController.logged}" class="col-6">
+					<div class="content">
+						<h5>Enter your comment:</h5>
+						<form action="/puzzle/comment">
+							<textarea class="form-control rounded-0" name="comment" required></textarea>
+							<br /> <input type="submit" value="Comment" />
+
+						</form>
+
+					</div>
+				</div>
+
+
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+
+
+						<h5>Comments:</h5>
+						<ol class="list-group">
+
+							<li class="list-group-item"
+								th:each="comment : ${@puzzleController.comment}"><span
+								th:text="${comment.ident}"></span> <span
+								th:text="${comment.username}"></span> <span
+								th:text="${comment.game}"></span><br /> <span
+								class="commenttext" th:text="${comment.content}"></span></li>
+						</ol>
+
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
