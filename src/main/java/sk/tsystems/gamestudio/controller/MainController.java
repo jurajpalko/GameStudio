@@ -13,16 +13,21 @@ import sk.tsystems.gamestudio.service.PlayerService;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class MainController {
 private Player loggedPlayer;
-
+private String loginErr = "";
 @Autowired
 PlayerService playerService;
 
 	@RequestMapping("/")
 	public String index() {
+		loginErr = "";
 		return "index";
 	}
 	
-
+	@RequestMapping("/notlogged")
+	public String nlog() {
+		
+		return "index";
+	}
 	@RequestMapping("/login")
 	public String login(Player player) {
 		
@@ -31,12 +36,16 @@ PlayerService playerService;
 		try {
 			if (playerService.getPlayer(player.getName()).getPasswd().equals(player.getPasswd())) {
 				loggedPlayer = player;
+			}else {
+				loginErr = "Login not successful";
+				return "redirect:/notlogged";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.err.println("Not able to login.");
+			loginErr = "Login not successful!";
 			e.printStackTrace();
-		
+		return "redirect:/notlogged";
 		}
 		return "redirect:/";
 	}
@@ -52,5 +61,13 @@ PlayerService playerService;
 	public Player getLoggedPlayer() {
 		return loggedPlayer;
 	}
+
+
+	public String getLoginErr() {
+		return loginErr;
+	}
+
+
+	
 
 }

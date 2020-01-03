@@ -3,34 +3,11 @@
 <head>
 <title>Puzzle</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="/css/games.css">
+<script th:replace="fragments/header :: commonLinks"></script>
 <link rel="stylesheet" href="/css/minesStyle.css">
 </head>
 <body>
-	<header>
-		<div th:if="${not @mainController.logged}">
-			You are not logged! Please <a href="/">log in</a>
-		</div>
-
-
-		<div th:if="${@mainController.logged}">
-			You are logged as <span
-				th:text="${@mainController.loggedPlayer.name}"></span><a
-				href="/logout"> Log out</a><br />
-		</div>
-
-
-
-		<div>
-			<a href="/"><h4>Game Studio</h4></a>
-		</div>
-
-
-	</header>
+	<div th:replace="fragments/header :: header"></div>
 
 
 

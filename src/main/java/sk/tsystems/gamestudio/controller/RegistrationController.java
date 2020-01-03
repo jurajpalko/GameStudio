@@ -17,45 +17,55 @@ import sk.tsystems.gamestudio.service.PlayerService;
 public class RegistrationController {
 	private Player loggedPlayer;
 	private String name;
+	private String registrationErr = "";
 
 	@Autowired
 	PlayerService playerService;
 
 	@Autowired
 	MainController mainController;
-	
+
 	@RequestMapping("/registration")
 	public String index() {
-	
+		registrationErr = "";
 		return "registration";
 	}
-
+	@RequestMapping("/notRegistered")
+	public String nReg() {
+		
+		return "registration";
+	}
+	
 	@RequestMapping("/registration/register")
 	public String register(Player player) {
-		if (player.getName().trim().length()>0) {
-		Player nameUnvailable=playerService.getPlayer(player.getName());
+		if (player.getName().trim().length() > 0) {
+			Player nameUnvailable = playerService.getPlayer(player.getName());
 			try {
-				if(nameUnvailable==null) {
-				
-				playerService.addPlayer(new Player(player.getName(), player.getPasswd()));
-				mainController.login(player);
-				
-				}else {
-					return "redirect:/registration";
+				if (nameUnvailable == null) {
+
+					playerService.addPlayer(new Player(player.getName(), player.getPasswd()));
+					mainController.login(player);
+
+				} else {
+					registrationErr="Name not available!";
+					return "redirect:/notRegistered";
 				}
 			} catch (Exception e) {
+				registrationErr="Registration not successful!";
 				
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("Not able to register.");
-				
-			
-		}	
+				return "redirect:/notRegistered";
+			}
 		}
-			
+
 		return "redirect:/";
 
 	}
 
+	public String getRegistrationErr() {
+		return registrationErr;
+	}
 
 }

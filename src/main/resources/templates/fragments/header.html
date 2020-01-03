@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+
+
+	<div th:fragment="commonLinks" th:remove="tag">
+		<link rel="stylesheet"
+			th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous">
+		<link rel="stylesheet" th:href="@{/css/games.css}">
+	</div>
+
+
+
+
+
+	<div th:fragment="header" th:remove="tag">
+		<header>
+			<div th:if="${not @mainController.logged}">
+				You are not logged! Please <a href="/">log in</a>
+			</div>
+
+
+			<div th:if="${@mainController.logged}">
+				You are logged as <span
+					th:text="${@mainController.loggedPlayer.name}"></span><a
+					href="/logout"> Log out</a><br />
+			</div>
+
+
+
+			<div>
+				<a href="/"><h4>Game Studio</h4></a>
+			</div>
+
+
+		</header>
+	</div>
+
+<div th:fragment="footer" th:remove="tag">
+<footer>
+
+</footer>
+</div>
+
+</body>
+</html>

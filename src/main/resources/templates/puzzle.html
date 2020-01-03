@@ -12,26 +12,7 @@
 </head>
 <body>
 
-	<header>
-		<div th:if="${not @mainController.logged}">
-			You are not logged! Please <a href="/">log in</a>
-		</div>
-
-
-		<div th:if="${@mainController.logged}">
-			You are logged as <span
-				th:text="${@mainController.loggedPlayer.name}"></span><a
-				href="/logout"> Log out</a><br />
-		</div>
-
-
-
-		<div>
-			<a href="/"><h4>Game Studio</h4></a>
-		</div>
-
-
-	</header>
+	<div th:replace="fragments/header :: header"></div>
 
 
 

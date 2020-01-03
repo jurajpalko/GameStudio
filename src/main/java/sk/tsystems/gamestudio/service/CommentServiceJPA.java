@@ -30,7 +30,7 @@ public class CommentServiceJPA implements CommentService{
 	public List<Comment> getComments(String game) {
 	
 		return (List<Comment>) entityManager
-				.createQuery("select c from Comment c where c.game = :game")
+				.createQuery("select c from Comment c where c.game = :game order by c.ident desc")
 				.setParameter("game", game).getResultList();
 	}
 	

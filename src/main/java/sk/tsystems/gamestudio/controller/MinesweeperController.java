@@ -28,7 +28,7 @@ public class MinesweeperController {
 	private Field field;
 	private boolean marking;
 	private String comment;
-	
+
 	@Autowired
 	private RatingService ratingService;
 	@Autowired
@@ -37,20 +37,20 @@ public class MinesweeperController {
 	private MainController mainController;
 	@Autowired
 	private CommentService commentService;
+	private boolean scored;
 
 	@RequestMapping("/minesweeper")
 	public String index() {
-		field = new Field(9, 9, 10);
+		field = new Field(15, 25, 60);
 		marking = false;
-		
-
+		scored = false;
 		return "minesweeper";
 	}
 
 	@RequestMapping("/minesweeper/comment")
 	public String comment(String comment) {
-		if (comment.trim().length()>0) {
-			
+		if (comment.trim().length() > 0) {
+
 			try {
 				this.comment = comment;
 				if (mainController.isLogged()) {
@@ -58,12 +58,12 @@ public class MinesweeperController {
 							.addComment(new Comment(mainController.getLoggedPlayer().getName(), "mines", this.comment));
 
 				}
-				
+
 			} catch (DataIntegrityViolationException e) {
-				
+
 				System.out.println("TOo long comment");
 				e.printStackTrace();
-			}catch (Exception e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -74,19 +74,21 @@ public class MinesweeperController {
 
 	@RequestMapping("/minesweeper/rate")
 	public String rate(int rating) {
-		if(rating>0&&rating<6){
-		if (mainController.isLogged()) {
-			
-			try {
-				ratingService.setRating(new Rating("mines", rating, mainController.getLoggedPlayer().getName()));
-				System.out.println("-------------------------" + rating);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (rating > 0 && rating < 6) {
+			if (mainController.isLogged()) {
+
+				try {
+					ratingService.setRating(new Rating("mines", rating, mainController.getLoggedPlayer().getName()));
+					System.out.println("-------------------------" + rating);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}}
+		}
 		return "minesweeper";
 	}
+
 	@RequestMapping("/minesweeper/switchMarking")
 	public String switchMarking() {
 		marking = !marking;
@@ -99,9 +101,9 @@ public class MinesweeperController {
 			if (getStatus() == GameState.PLAYING) {
 				field.openTile(row, column);
 			}
-			if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
+			if (getStatus() == GameState.SOLVED && mainController.isLogged() && !scored) {
 				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
-				
+				scored = true;
 				return "minesweeper";
 			}
 		} catch (Exception e) {
@@ -117,6 +119,7 @@ public class MinesweeperController {
 
 		return f.format("alert(\"Hello! I am an alert box!!\")").toString();
 	}
+
 	@RequestMapping("/minesweeper/markTile")
 	public String markTile(int row, int column) {
 		try {
@@ -124,10 +127,7 @@ public class MinesweeperController {
 				field.markTile(row, column);
 
 			}
-			if (getStatus() == GameState.SOLVED && mainController.isLogged()) {
-				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mines", field.getScore()));
-				return "minesweeper";
-			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -206,8 +206,9 @@ public class MinesweeperController {
 	public List<Comment> getComment() {
 		return commentService.getComments("mines");
 	}
+
 	public double getAverageRating() {
-		double rating =0;
+		double rating = 0;
 		try {
 			rating = ratingService.getAverateRating("mines");
 		} catch (Exception e) {
