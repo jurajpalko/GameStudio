@@ -11,28 +11,8 @@
 <link rel="stylesheet" href="/css/registrationStyle.css" />
 </head>
 <body>
+	<div th:replace="fragments/header :: header"></div>
 
-
-	<header>
-		<div th:if="${not @mainController.logged}">
-			You are not logged! Please <a href="/">log in</a>
-		</div>
-
-
-		<div th:if="${@mainController.logged}">
-			You are logged as <span
-				th:text="${@mainController.loggedPlayer.name}"></span><a
-				href="/logout"> Log out</a><br />
-		</div>
-
-
-
-		<div>
-			<a href="/"><h4>Game Studio</h4></a>
-		</div>
-
-
-	</header>
 
 	<section class="register">
 		<div class="container">
@@ -45,19 +25,21 @@
 
 						<div class="column">
 							<label> Username: </label> <br /> <input type="text" name="name"
-								required />
+								required placeholder="4-12 characters" />
 
 						</div>
-
+						<div th:text="${@registrationController.nameErr}"
+							style="color: red"></div>
+							
 						<div class="column">
 							<label> Password: </label> <br /> <input type="password"
-								name="passwd" required />
+								name="passwd" required placeholder="4-12 characters" />
 						</div>
+						<div th:text="${@registrationController.passwordErr}"
+							style="color: red"></div>
 						<div class="column">
 							<input type="submit" value="register" />
 						</div>
-						<div th:text="${@registrationController.registrationErr}"
-							style="color: red"></div>
 
 
 					</form>
