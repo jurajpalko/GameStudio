@@ -19,70 +19,108 @@
 	<h1>Puzzle</h1>
 
 
-	<div class="container gameOption">
-		<div class="row">
-
-			<div class="col-4">
-				<a href="/puzzle"><button>New game</button></a>
-			</div>
-
-
-			<div class="col-4">
-				<span>Game rating:</span> <span
-					th:text="${@puzzleController.averageRating}"></span>
-			</div>
-
-
-			<div class="col-4">
-				<ul class="rating list-group list-group-horizontal"
-					th:if="${@mainController.logged}">
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/puzzle/rate?rating=1}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/puzzle/rate?rating=2}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/puzzle/rate?rating=3}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/puzzle/rate?rating=4}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/puzzle/rate?rating=5}">*</a></li>
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- <div th:text="${@puzzleController.message}" /> -->
 
-	<div class="container">
-		<div class="row">
+	<div id="game">
+		<div class="container">
+			<div class="row">
 
-			<div class="content">
+				<div th:if="${not @puzzleController.solved}" class="content">
 
-				<div th:if="${not @puzzleController.solved}">
+					
 
-					<div th:utext="${@puzzleController.htmlField}"></div>
+						<div th:utext="${@puzzleController.htmlField}"></div>
+
+					
+
+
+					<div class="gameOption">
+						<a href="/puzzle"><button>New game</button></a> <span
+							class="gr rating">Game rating:</span> <span class="rating"
+							th:text="${@puzzleController.averageRating}"></span>
+
+						<div class="gr" th:if="${@mainController.logged}">
+
+							<span>Rate the game:</span><br />
+
+						</div>
+
+						<ul class="rating list-group list-group-horizontal"
+							th:if="${@mainController.logged}">
+							<li><a th:href="@{/puzzle/rate?rating=1}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=2}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=3}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=4}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=5}">*</a></li>
+						</ul>
+
+
+					</div>
+
+
+
+
+
+
+
+
+
 
 				</div>
 
 			</div>
-
 		</div>
-	</div>
 
-	<div class="container">
-		<div class="row">
+		<div class="container">
+			<div class="row">
 
-			<div class="content">
-				<div th:if="${@puzzleController.solved}">
-					<img alt="puzzle" class="img-fluid" src="/images/puzzle/puzzle.jpg">
+				<div th:if="${@puzzleController.solved}" class="content">
+				
+					
+						<img alt="puzzle" class="img-fluid"
+							src="/images/puzzle/puzzle.jpg">
+					
+					
+					<div class="gameOption">
+						<a href="/puzzle"><button>New game</button></a> <span
+							class="gr rating">Game rating:</span> <span class="rating"
+							th:text="${@puzzleController.averageRating}"></span>
+
+						<div class="gr" th:if="${@mainController.logged}">
+
+							<span>Rate the game:</span><br />
+
+						</div>
+
+						<ul class="rating list-group list-group-horizontal"
+							th:if="${@mainController.logged}">
+							<li><a th:href="@{/puzzle/rate?rating=1}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=2}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=3}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=4}">*</a></li>
+							<li><a th:href="@{/puzzle/rate?rating=5}">*</a></li>
+						</ul>
+
+
+					</div>
 				</div>
+
+
+
 			</div>
-
 		</div>
-	</div>
 
+
+
+
+
+
+
+
+
+	</div>
 
 
 	<div class="section">
@@ -128,7 +166,7 @@
 					<div class="content">
 						<h5>Enter your comment:</h5>
 						<form action="/puzzle/comment">
-							<textarea class="form-control rounded-0" name="comment" required></textarea>
+							<textarea class="form-control" name="comment" required></textarea>
 							<br /> <input type="submit" value="Comment" />
 
 						</form>
@@ -140,7 +178,7 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-12">
+					<div class="col-12 coment">
 
 
 						<h5>Comments:</h5>
@@ -160,5 +198,6 @@
 			</div>
 		</div>
 	</div>
+	<div th:replace="fragments/header :: footer"></div>
 </body>
 </html>

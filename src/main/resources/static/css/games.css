@@ -19,18 +19,18 @@ body {
 h1 {
 	text-align: center;
 	margin: 0 auto;
-background: black;
+	background: black;
 }
-
 
 h2 {
 	text-align: center;
 	margin: 0 auto;
-	
 }
-h4{
+
+h4 {
 	margin: 0;
 }
+
 header {
 	background: black;
 	color: lightgray;
@@ -56,20 +56,29 @@ header h4:hover {
 h1 {
 	color: lightgreen;
 }
-.row{
+
+.row {
 	margin-top: 1em;
 }
-div .content{
-	
+
+div .content {
 	text-align: center;
-	
 }
 
-.gameOption{font-size: 1.6em;
+.gameOption {
+	font-size: 1em;
+	padding:0;
+	padding-bottom: 3em;
+}
+.gameOption {
+	position: relative;
+	text-align: left;
+
 }
 .section {
 	background: #408080;
-	margin-bottom: 0;
+	padding-bottom: 6em;
+	padding-top: 1em;
 }
 
 .section h5 {
@@ -77,3 +86,74 @@ div .content{
 	color: lightgray;
 }
 
+footer {
+	background: black;
+	color: lightgray;
+	padding: 2em 0 1em 0;
+}
+
+footer ul {
+	margin: 0 auto;
+	text-align: center;
+	list-style: none;
+	padding: 0;
+}
+
+footer .row {
+	margin: 0 auto;
+}
+
+footer b {
+	font-size: 1.25em;
+	color: lightgreen;
+}
+
+footer a {
+	color: lightgray;
+}
+
+footer a:hover {
+	color: lightgreen;
+}
+
+.cop {
+	text-align: right;
+	background: black;
+	color: lightgray;
+	padding-right: .4em;
+}
+
+.coment {
+	padding: 0;
+}
+
+#game {
+	margin: 5em 0 0 0;
+}
+
+ul {
+	padding-left: 1em;
+	list-style: none;
+	line-height: 1.3em;
+}
+
+a:hover {
+	color: lightgreen;
+	text-decoration: none;
+}
+
+.rating a {
+	font-size: 1.7em;
+	color: black;
+}
+.rating a:hover {
+	color: yellow;
+}
+.rating{
+	position: absolute;
+	right: 0px;
+}
+.gr{
+right: 2em;	
+text-align: right;
+}

@@ -34,7 +34,7 @@ PlayerService playerService;
 		
 		
 		try {
-			if (playerService.getPlayer(player.getName()).getPasswd().equals(player.getPasswd())) {
+			if (playerService.getPlayer(player.getName().toLowerCase()).getPasswd().equals(player.getPasswd())) {
 				loggedPlayer = player;
 			}else {
 				loginErr = "Login not successful";

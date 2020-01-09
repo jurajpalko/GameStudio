@@ -7,7 +7,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous" />
-	<link rel="stylesheet" href="/css/games.css">
+<link rel="stylesheet" href="/css/games.css">
 <link rel="stylesheet" href="/css/indexStyle.css" />
 </head>
 <body>
@@ -54,7 +54,8 @@
 						<button>
 							<a href="/registration">register</a>
 						</button>
-			<div th:text="${@mainController.loginErr}" style="color:red; font-size: .8em"></div>
+						<div th:text="${@mainController.loginErr}"
+							style="color: red; font-size: .8em"></div>
 
 					</form>
 
@@ -67,44 +68,55 @@
 		<div class="container">
 			<div class="row">
 				<div class="content">
-					<div class="content">
-						<div class="col-4">
-							<div>
-								<a href="/minesweeper"><img src="/images/mines/mines.png"
-									width="180px" alt="mines"></a>
-							</div>
-<!-- 							<a href="/minesweeper"><button>Minesweeper</button></a> -->
+
+					<div class="col-3">
+						<div>
+							<a href="minesweeper"><img src="/images/mines/mines.png"
+								width="180px" alt="mines"></a>
 						</div>
+						<!-- 							<a href="/minesweeper"><button>Minesweeper</button></a> -->
 					</div>
+
 				</div>
 				<div class="content">
-					<div class="content">
-						<div class="col-4">
-							<div>
-								<a href="puzzle"><img
-									src="/images/puzzle/thePuzzle.png" width="180px" alt="puzzle"></a>
-							</div>
-<!-- 							<a href="/puzzle"><button>Puzzle</button></a> -->
+
+					<div class="col-3">
+						<div>
+							<a href="puzzle"><img src="/images/puzzle/thePuzzle.png"
+								width="180px" alt="puzzle"></a>
 						</div>
+						<!-- 							<a href="/puzzle"><button>Puzzle</button></a> -->
 					</div>
+
 				</div>
 				<div class="content">
-					<div class="content">
-						<div class="col-4">
-							<div>
-								<a href="/guessnumber"><img
-									src="/images/guessnumber/guessnumber.jpg" width="180px"
-									alt="guessnumber"></a>
-							</div>
-<!-- 							<a href="/guessnumber"><button>Guessnumber</button></a> -->
+
+					<div class="col-3">
+						<div>
+							<a href="/guessnumber"><img
+								src="/images/guessnumber/guessnumber.jpg" width="180px"
+								alt="guessnumber"></a>
 						</div>
+						<!-- 							<a href="/guessnumber"><button>Guessnumber</button></a> -->
+					</div>
+
+
+				</div>
+				<div class="content">
+
+					<div class="col-3">
+						<div>
+							<img src="/images/other/comm.jpg" width="180px" height="180px"
+								alt="soon">
+						</div>
+						<!-- 							<a href="/minesweeper"><button>Minesweeper</button></a> -->
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</section>
-
+	<div th:replace="fragments/header :: footer"></div>
 </body>
 </html>
 

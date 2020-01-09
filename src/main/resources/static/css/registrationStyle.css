@@ -3,6 +3,7 @@ header{
 
 	background: black;
 	color: lightgray;
+	margin-bottom: 7em;;
 }
 
 .register .content{
@@ -13,6 +14,9 @@ header{
 
 input{
 	margin-bottom: .3em;
+}
+footer{
+	margin-top: 20em;
 }
 
 	

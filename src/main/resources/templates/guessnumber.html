@@ -15,71 +15,71 @@
 
 	<h1>GuessNumber</h1>
 
-	<div class="container gameOption">
-		<div class="row">
-
-			<div class="col-4">
-				<a href="/guessnumber"><button>New game</button>
-					<br></a>
-			</div>
+	
+	<div id="game">
+		<div class="container">
+			<div class="row">
+				<div class="content">
 
 
-			<div class="col-4">
-				<span>Game rating:</span> <span
-					th:text="${@guessNumberController.averageRating}"></span>
+					<div th:if="${@guessNumberController.playing}">
+						Enter your guess from 0 to <span
+							th:text="${@guessNumberController.maxNum}"> </span> : <br />
+					</div>
 
 
-			</div>
 
-			<div class="col-4">
-				<ul class="rating list-group list-group-horizontal"
-					th:if="${@mainController.logged}">
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/guessnumber/rate?rating=1}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/guessnumber/rate?rating=2}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/guessnumber/rate?rating=3}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/guessnumber/rate?rating=4}">*</a></li>
-					<li class="list-group-item"><a href="product/list.html"
-						th:href="@{/guessnumber/rate?rating=5}">*</a></li>
-				</ul>
+
+
+					<div
+						th:if="${@guessNumberController.guess!=@guessNumberController.random}">
+						<div th:utext="${@guessNumberController.htmlField}"></div>
+					</div>
+					<div th:if="${@guessNumberController.guess!=-1}">
+
+						<div class="gameOption"
+							th:utext="${@guessNumberController.message}"></div>
+					</div>
+
+
+
+					<div class="gameOption">
+						<a href="/guessnumber"><button>New game</button></a> <span
+							class="gr rating">Game rating:</span> <span class="rating"
+							th:text="${@guessNumberController.averageRating}"></span>
+
+						<div class="gr" th:if="${@mainController.logged}">
+
+							<span>Rate the game:</span><br />
+
+						</div>
+
+						<ul class="rating list-group list-group-horizontal"
+							th:if="${@mainController.logged}">
+							<li><a th:href="@{/guessnumber/rate?rating=1}">*</a></li>
+							<li><a th:href="@{/guessnumber/rate?rating=2}">*</a></li>
+							<li><a th:href="@{/guessnumber/rate?rating=3}">*</a></li>
+							<li><a th:href="@{/guessnumber/rate?rating=4}">*</a></li>
+							<li><a th:href="@{/guessnumber/rate?rating=5}">*</a></li>
+						</ul>
+
+
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+				</div>
 			</div>
 		</div>
-
-
 	</div>
-
-	<div class="container">
-		<div class="row">
-			<div class="content">
-
-
-				<div th:if="${@guessNumberController.playing}">
-					Enter your guess from 0 to <span
-						th:text="${@guessNumberController.maxNum}"> </span> : <br />
-				</div>
-
-
-
-
-
-				<div
-					th:if="${@guessNumberController.guess!=@guessNumberController.random}">
-					<div th:utext="${@guessNumberController.htmlField}"></div>
-				</div>
-				<div th:if="${@guessNumberController.guess!=-1}">
-
-					<div class="gameOption"
-						th:utext="${@guessNumberController.message}"></div>
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-
 
 	<div class="section">
 		<div class="container">
@@ -124,7 +124,7 @@
 					<div class="content">
 						<h5>Enter your comment:</h5>
 						<form action="/guessnumber/comment">
-							<textarea class="form-control rounded-0" name="comment" required></textarea>
+							<textarea class="form-control" name="comment" required></textarea>
 							<br /> <input type="submit" value="Comment" />
 
 						</form>
@@ -136,7 +136,7 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-12">
+					<div class="col-12 coment">
 
 
 						<h5>Comments:</h5>
@@ -156,6 +156,6 @@
 			</div>
 		</div>
 	</div>
-
+	<div th:replace="fragments/header :: footer"></div>
 </body>
 </html>
