@@ -19,6 +19,17 @@ import sk.tsystems.gamestudio.service.CommentService;
 import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
+
+// // test test test test test test test test test test test test test test
+// // test test test test test test test test test test test test test test test
+// test test test test test test test test test test test test test test test test
+// test test test test test test test test test test test test test test test test test
+
+
+
+
+
+
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class GuessNumberController {
