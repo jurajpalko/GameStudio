@@ -29,7 +29,7 @@ import sk.tsystems.gamestudio.service.ScoreService;
 // // hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
 // // hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
 
-
+System.println("Hello");
 
 
 
